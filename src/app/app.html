@@ -38,6 +38,8 @@
       (deviceSelect)="device.set($event)"
       (generate)="onGenerate()"
       (download)="onDownload()"
+      [linkCopied]="linkCopied()"
+      (copyLink)="onCopyLink()"
     />
   </div>
 </div>

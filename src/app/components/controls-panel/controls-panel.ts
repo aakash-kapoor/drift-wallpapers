@@ -13,13 +13,15 @@ export class ControlsPanel {
   paletteIndex = input.required<number>();
   darkMode = input.required<boolean>();
   device = input.required<Device>();
-
+  linkCopied = input.required<boolean>();
+  
   patternChange = output<Pattern>();
   paletteIndexChange = output<number>();
   darkModeChange = output<boolean>();
   deviceSelect = output<Device>();
   generate = output<void>();
   download = output<void>();
+  copyLink = output<void>();
 
   readonly patterns = PATTERNS;
   readonly patternLabels = PATTERN_LABELS;
