@@ -1,18 +1,29 @@
 <div class="app">
   <header class="header">
-    <div class="wordmark">DRIFT</div>
-    <button class="ui-theme-toggle" (click)="toggleUiDarkMode()" [title]="uiDarkMode() ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
+    <div class="mark-group">
+      <svg class="glyph" viewBox="0 0 24 24" fill="none">
+        <path d="M2 16 Q6 10 10 14 T18 12 T22 15" stroke="#6366F1" stroke-width="2" stroke-linecap="round" fill="none" />
+        <path d="M2 19 Q6 15 10 17 T18 16 T22 18" [attr.stroke]="uiDarkMode() ? '#3A3A85' : '#B4B2F0'" stroke-width="2"
+          stroke-linecap="round" fill="none" />
+      </svg>
+      <div class="wordmark">DRIFT</div>
+    </div>
+    <button class="ui-theme-toggle" (click)="toggleUiDarkMode()"
+      [title]="uiDarkMode() ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
       @if (uiDarkMode()) {
-        <!-- Sun icon for light mode -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"/>
-          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-        </svg>
+      <!-- Sun icon for light mode -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4" />
+        <path
+          d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+      </svg>
       } @else {
-        <!-- Moon icon for dark mode -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-        </svg>
+      <!-- Moon icon for dark mode -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+      </svg>
       }
     </button>
   </header>

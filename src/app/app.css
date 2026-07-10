@@ -1,6 +1,6 @@
 :host {
   /* Dark theme variables (default) */
-  --bg-color: #0B0B0D;
+  --bg-color: #111111;
   --text-color: #EDEDF0;
   --text-muted: #8A8A93;
   --text-label: #6B6B73;
@@ -87,11 +87,28 @@
   margin-bottom: 24px;
 }
 
+.mark-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.glyph {
+  width: 22px;
+  height: 22px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.glyph path:last-child {
+  transition: stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .wordmark {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 3px;
-  color: var(--text-muted);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--text);
   transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
