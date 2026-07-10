@@ -33,5 +33,9 @@
 </div>
 
 <button class="btn-primary" (click)="generate.emit()">Generate new</button>
+<div class="button-row">
+  <button class="btn-secondary" (click)="save.emit()">Save</button>
+  <button class="btn-secondary" (click)="openHistory.emit()">Library</button>
+</div>
 <button class="btn-secondary" (click)="download.emit()">Download</button>
 <button class="btn-secondary" (click)="copyLink.emit()"> {{ linkCopied() ? 'Link copied!' : 'Copy link' }}</button>

@@ -1,0 +1,135 @@
+.wallpaper-card {
+  background: var(--control-bg);
+  border: 1px solid var(--control-border);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wallpaper-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--control-hover-border);
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
+}
+
+.canvas-container {
+  width: 100%;
+  height: 0;
+  padding-bottom: 63.63%; /* 140 / 220 = 63.63% aspect ratio */
+  position: relative;
+  overflow: hidden;
+  background: #000;
+}
+
+.canvas-container canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-footer {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+}
+
+.card-date {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.card-pattern {
+  color: var(--text-label);
+  background: var(--card-border);
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: capitalize;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  height: 32px;
+}
+
+.btn-card-load, .btn-card-delete, .btn-confirm-yes, .btn-confirm-no {
+  flex: 1;
+  border: 1px solid var(--btn-secondary-border);
+  background: transparent;
+  color: var(--btn-secondary-text);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-card-load {
+  background: var(--primary-active-bg);
+  border-color: transparent;
+  color: var(--primary-active-text);
+}
+
+.btn-card-load:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-card-delete:hover {
+  border-color: #EF4444;
+  color: #EF4444;
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.confirm-actions {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+.confirm-text {
+  font-size: 12px;
+  color: #EF4444;
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-right: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.btn-confirm-yes {
+  background: #EF4444;
+  color: white;
+  border-color: transparent;
+}
+
+.btn-confirm-yes:hover {
+  background: #DC2626;
+}
+
+.btn-confirm-no {
+  /* inherits flex: 1 from main group definition */
+}
+
+.btn-confirm-no:hover {
+  background: var(--control-hover-border);
+  color: var(--text-color);
+}

@@ -40,6 +40,22 @@
       (download)="onDownload()"
       [linkCopied]="linkCopied()"
       (copyLink)="onCopyLink()"
+      (save)="onSave()"
+      (openHistory)="isHistoryOpen.set(true)"
     />
+  </div>
+
+  <app-history-modal
+    [isOpen]="isHistoryOpen()"
+    (close)="isHistoryOpen.set(false)"
+    (loadConfig)="onLoadConfig($event)"
+  />
+
+  <div class="toast-container">
+    @for (toast of toastService.toasts(); track toast.id) {
+      <div class="toast" [class]="toast.type" (click)="toastService.dismiss(toast.id)">
+        {{ toast.message }}
+      </div>
+    }
   </div>
 </div>

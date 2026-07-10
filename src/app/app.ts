@@ -3,10 +3,13 @@ import { CanvasPreview } from './components/canvas-preview/canvas-preview';
 import { ControlsPanel } from './components/controls-panel/controls-panel';
 import { Pattern, Device, PATTERNS } from './core/wallpaper-engine.service';
 import { PALETTES } from './core/palette.data';
+import { FirebaseService, WallpaperConfig } from './core/firebase.service';
+import { ToastService } from './core/toast.service';
+import { HistoryModal } from './components/history-modal/history-modal';
 
 @Component({
   selector: 'app-root',
-  imports: [CanvasPreview, ControlsPanel],
+  imports: [CanvasPreview, ControlsPanel, HistoryModal],
   templateUrl: './app.html',
   styleUrl: './app.css',
   host: {
@@ -23,8 +26,12 @@ export class App {
   device = signal<Device>('desktop');
   uiDarkMode = signal<boolean>(this.loadUiDarkMode());
   linkCopied = signal(false);
+  isHistoryOpen = signal<boolean>(false);
 
-  constructor() {
+  constructor(
+    public firebaseService: FirebaseService,
+    public toastService: ToastService
+  ) {
     this.loadFromUrl();
 
     effect(() => {
@@ -92,6 +99,34 @@ export class App {
   onCopyLink(): void {
     navigator.clipboard.writeText(window.location.href);
     this.linkCopied.set(true);
+    this.toastService.show('Link copied to clipboard', 'success');
     setTimeout(() => this.linkCopied.set(false), 1800);
+  }
+
+  async onSave(): Promise<void> {
+    const config: WallpaperConfig = {
+      pattern: this.pattern(),
+      paletteIndex: this.paletteIndex(),
+      seed: this.seed(),
+      darkMode: this.darkMode(),
+      device: this.device()
+    };
+
+    try {
+      await this.firebaseService.saveWallpaper(config);
+      this.toastService.show('Wallpaper saved to library', 'success');
+    } catch (err: any) {
+      console.error(err);
+      this.toastService.show(err.message || 'Failed to save wallpaper', 'error');
+    }
+  }
+
+  onLoadConfig(config: WallpaperConfig): void {
+    this.pattern.set(config.pattern);
+    this.paletteIndex.set(config.paletteIndex);
+    this.seed.set(config.seed);
+    this.darkMode.set(config.darkMode);
+    this.device.set(config.device);
+    this.toastService.show('Wallpaper loaded', 'info');
   }
 }

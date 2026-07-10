@@ -1,59 +1,83 @@
-# DriftWallpapers
+# DRIFT — Minimal Procedural Wallpaper Generator
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.6.
+DRIFT is a premium, web-based minimal procedural wallpaper generator built with Angular, HTML5 Canvas, and Firebase. It lets you dynamically generate high-resolution wallpapers using advanced mathematically generated patterns and custom color palettes, and now comes with an elegant, cloud-sync library for saving your custom configurations.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- **Procedural Rendering**: Renders high-quality wallpapers dynamically using Canvas API. Includes 6 custom-designed generative patterns:
+  - **Hills** (Flowing valleys and pine forests)
+  - **Wave** (Smooth Gaussian-wave curves)
+  - **Dunes** (Wavy sine-noise sand formations)
+  - **Mountains** (Sharp peak outlines with micro-fractal noise)
+  - **Arcs** (Calming concentric rings)
+  - **Desert** (Intertwined Bezier dune lines)
+- **Fluid Customization**: Instantly switch palettes, toggle wallpaper dark modes, or randomize seeds to generate infinite variations.
+- **Tailored Outputs**: Download wallpapers optimized for **Desktop 4K** (3840×2160) or **iPhone** (1290×2796) aspect ratios.
+- **Firebase Saved Library**:
+  - **Anonymous Sign-In**: Silently registers users on startup, keeping their library sandboxed and synchronized.
+  - **Firestore Integration**: Persists lightweight wallpaper configurations without high storage overhead.
+  - **Zero-Storage Thumbnails**: Dynamically redraws saved wallpapers onto preview canvases on demand, keeping them infinitely crisp.
+  - **Premium UI/UX Details**: 
+    - Full-overlay glassmorphic history modal.
+    - Smooth fade-in, backdrop dismiss, and `ESC` key bindings.
+    - Locked body scrolling when the modal is active.
+    - Inline deletion confirmation on thumbnail cards.
+    - Human-readable relative date display (e.g. *Today*, *Yesterday*, *3 days ago*).
 
-```bash
-ng serve
+---
+
+## Architecture
+
+```
+AppComponent
+    │
+    ├── CanvasPreview (Renders active wallpaper & exports PNG)
+    │
+    ├── ControlsPanel (Interactive seed/palette/device controls)
+    │
+    └── HistoryModal (Renders Firestore saved wallpaper cards)
+            │
+            ├── FirebaseService (Manages anonymous auth & wallpaper CRUD)
+            ├── WallpaperEngineService (Renders procedural canvas patterns)
+            └── ToastService (Triggers smooth temporary notifications)
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## Development
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Setup & Installation
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Ensure you have [Node.js](https://nodejs.org) installed, then run:
 
 ```bash
-ng generate --help
+npm install
 ```
 
-## Building
+### Local Dev Server
 
-To build the project run:
+Launch the development server:
 
 ```bash
-ng build
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Navigate to `http://localhost:4200/` in your browser. The application will auto-reload on file edits.
 
-## Running unit tests
+### Building for Production
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Compile a production-optimized build:
 
 ```bash
-ng test
+npm run build
 ```
 
-## Running end-to-end tests
+The output will be placed in the `dist/drift-wallpapers` directory.
 
-For end-to-end (e2e) testing, run:
+### Testing
+
+Run unit tests via Vitest:
 
 ```bash
-ng e2e
+npm run test
 ```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

@@ -17,6 +17,7 @@ describe('ControlsPanel', () => {
     fixture.componentRef.setInput('paletteIndex', 0);
     fixture.componentRef.setInput('darkMode', true);
     fixture.componentRef.setInput('device', 'desktop');
+    fixture.componentRef.setInput('linkCopied', false);
     await fixture.whenStable();
   });
 

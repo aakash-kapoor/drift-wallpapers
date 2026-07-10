@@ -22,6 +22,8 @@ export class ControlsPanel {
   generate = output<void>();
   download = output<void>();
   copyLink = output<void>();
+  save = output<void>();
+  openHistory = output<void>();
 
   readonly patterns = PATTERNS;
   readonly patternLabels = PATTERN_LABELS;
