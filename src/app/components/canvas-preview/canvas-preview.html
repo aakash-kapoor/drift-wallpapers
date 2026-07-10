@@ -1,0 +1,47 @@
+<div class="previews-container">
+  <div class="preview-desktop-wrap" [class.active]="device() === 'desktop'" (click)="selectDevice('desktop')">
+    <div class="preview-label">Desktop 4K</div>
+    <div class="canvas-container">
+      <canvas #desktopCanvas></canvas>
+      <div class="lockscreen-overlay desktop-overlay">
+        <div class="desktop-clock-container">
+          <div class="desktop-date">{{ currentTime() | date:'EEEE, MMMM d' }}</div>
+          <div class="desktop-time">{{ currentTime() | date:'HH:mm' }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="preview-mobile-wrap" [class.active]="device() === 'iphone'" (click)="selectDevice('iphone')">
+    <div class="preview-label">iPhone</div>
+    <div class="canvas-container">
+      <canvas #mobileCanvas></canvas>
+      <div class="lockscreen-overlay mobile-overlay">
+        <div class="ios-lock-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <rect x="5" y="11" width="14" height="10" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+        </div>
+        <div class="ios-date">{{ currentTime() | date:'EEEE, MMMM d' | uppercase }}</div>
+        <div class="ios-time">{{ currentTime() | date:'HH:mm' }}</div>
+
+        <div class="ios-bottom-bar">
+          <div class="ios-widget-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8c0 1 .5 2.5 1.5 3.5.8.8 1.3 1.5 1.5 2.5" />
+              <path d="M9 18h6M10 22h4" />
+            </svg>
+          </div>
+          <div class="ios-home-indicator"></div>
+          <div class="ios-widget-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+              <circle cx="12" cy="13" r="4" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

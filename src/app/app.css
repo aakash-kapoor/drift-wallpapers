@@ -1,0 +1,141 @@
+:host {
+  /* Dark theme variables (default) */
+  --bg-color: #0B0B0D;
+  --text-color: #EDEDF0;
+  --text-muted: #8A8A93;
+  --text-label: #6B6B73;
+  
+  --card-bg: #131316;
+  --card-border: #1D1D21;
+  
+  --control-bg: #17171B;
+  --control-border: #232327;
+  --control-hover-border: #34343A;
+  --control-text: #B4B4BC;
+  
+  --toggle-bg: #232327;
+  --toggle-thumb: #EDEDF0;
+  
+  --segmented-bg: #131316;
+  --segmented-btn-active: #232327;
+  --segmented-btn-text: #8A8A93;
+  
+  --btn-secondary-border: #232327;
+  --btn-secondary-hover-border: #34343A;
+  --btn-secondary-text: #B4B4BC;
+  --btn-secondary-hover-text: #EDEDF0;
+  
+  --primary-color: #6366F1;
+  --primary-hover: #7274F3;
+  --primary-glow: rgba(99, 102, 241, 0.35);
+  --primary-active-bg: rgba(99, 102, 241, 0.12);
+  --primary-active-text: #C7C8FE;
+
+  display: block;
+  min-height: 100vh;
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+  transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:host(.light-theme) {
+  /* Light theme variables */
+  --bg-color: #F4F4F6;
+  --text-color: #1D1D21;
+  --text-muted: #6B6B73;
+  --text-label: #8A8A93;
+  
+  --card-bg: #FFFFFF;
+  --card-border: #E2E2E9;
+  
+  --control-bg: #ECECEF;
+  --control-border: #D1D1DB;
+  --control-hover-border: #BCBCC8;
+  --control-text: #4E4E56;
+  
+  --toggle-bg: #ECECEF;
+  --toggle-thumb: #1D1D21;
+  
+  --segmented-bg: #ECECEF;
+  --segmented-btn-active: #FFFFFF;
+  --segmented-btn-text: #6B6B73;
+  
+  --btn-secondary-border: #D1D1DB;
+  --btn-secondary-hover-border: #BCBCC8;
+  --btn-secondary-text: #4E4E56;
+  --btn-secondary-hover-text: #1D1D21;
+  
+  --primary-color: #4F46E5;
+  --primary-hover: #4338CA;
+  --primary-glow: rgba(79, 70, 229, 0.25);
+  --primary-active-bg: rgba(79, 70, 229, 0.08);
+  --primary-active-text: #4F46E5;
+}
+
+.app {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  transition: max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.wordmark {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ui-theme-toggle {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  width: 32px;
+  height: 32px;
+}
+
+.ui-theme-toggle:hover {
+  background: var(--control-bg);
+  color: var(--text-color);
+}
+
+.ui-theme-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .app {
+    max-width: 1100px;
+    padding: 40px;
+  }
+
+  .layout-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 40px;
+    align-items: start;
+  }
+}

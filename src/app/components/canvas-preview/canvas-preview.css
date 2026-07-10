@@ -1,0 +1,185 @@
+.previews-container {
+  position: relative;
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+  border: 1px solid var(--card-border);
+}
+
+@media (min-width: 768px) {
+  .previews-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.preview-desktop-wrap {
+  flex: 1;
+  max-width: 560px;
+  width: 100%;
+  min-width: 0;
+  position: relative;
+}
+
+.preview-mobile-wrap {
+  width: 120px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.preview-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.preview-desktop-wrap.active .preview-label,
+.preview-mobile-wrap.active .preview-label {
+  color: var(--primary-color);
+}
+
+.canvas-container {
+  position: relative;
+  container-type: inline-size;
+  overflow: hidden;
+  border: 3px solid var(--control-border);
+  transition: border-color 0.3s;
+}
+
+.preview-desktop-wrap .canvas-container {
+  border-radius: 8px;
+  aspect-ratio: 16 / 9;
+}
+
+.preview-mobile-wrap .canvas-container {
+  border-radius: 14px;
+  aspect-ratio: 1290 / 2796;
+}
+
+.preview-desktop-wrap canvas,
+.preview-mobile-wrap canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.lockscreen-overlay {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35), 0 2px 16px rgba(0, 0, 0, 0.2);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
+  box-sizing: border-box;
+}
+
+.desktop-clock-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 6cqw;
+}
+
+.desktop-date {
+  font-size: max(10px, 3cqw);
+  font-weight: 500;
+  opacity: 0.95;
+  letter-spacing: 0.3px;
+}
+
+.desktop-time {
+  font-size: max(26px, 10cqw);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-top: 2px;
+}
+
+.ios-lock-icon {
+  margin-top: 6cqw;
+  width: max(8px, 3.5cqw);
+  height: max(8px, 3.5cqw);
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ios-lock-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+}
+
+.ios-date {
+  font-size: max(7px, 3.5cqw);
+  font-weight: 600;
+  margin-top: 2cqw;
+  letter-spacing: 0.5px;
+  opacity: 0.95;
+}
+
+.ios-time {
+  font-size: max(26px, 20cqw);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-top: 1cqw;
+  letter-spacing: -0.5px;
+}
+
+.ios-bottom-bar {
+  position: absolute;
+  bottom: 5cqw;
+  left: 8cqw;
+  right: 8cqw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ios-widget-btn {
+  width: max(22px, 11cqw);
+  height: max(22px, 11cqw);
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.ios-widget-btn svg {
+  width: 50%;
+  height: 50%;
+}
+
+.ios-home-indicator {
+  width: 32cqw;
+  height: 2px;
+  background: #ffffff;
+  opacity: 0.8;
+  border-radius: 99px;
+  position: absolute;
+  bottom: -2cqw;
+  left: 50%;
+  transform: translateX(-50%);
+}

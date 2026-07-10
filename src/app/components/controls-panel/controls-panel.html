@@ -1,0 +1,36 @@
+<div class="section-label">Pattern</div>
+<div class="patterns">
+  @for (p of patterns; track p) {
+    <div
+      class="pattern-pill"
+      [class.active]="pattern() === p"
+      (click)="patternChange.emit(p)"
+    >{{ patternLabels[p] }}</div>
+  }
+</div>
+
+<div class="section-label">Palette</div>
+<div class="swatches">
+  @for (pal of palettes; track pal.name; let i = $index) {
+    <div
+      class="swatch"
+      [class.active]="paletteIndex() === i"
+      [style.background]="'linear-gradient(135deg, ' + pal.colors[0] + ', ' + pal.colors[6] + ')'"
+      (click)="paletteIndexChange.emit(i)"
+    ></div>
+  }
+</div>
+
+<div class="row">
+  <div class="section-label" style="margin:0;">Dark mode</div>
+  <div class="toggle" [class.on]="darkMode()" (click)="darkModeChange.emit(!darkMode())"></div>
+</div>
+
+<div class="section-label">Output</div>
+<div class="segmented">
+  <button [class.active]="device() === 'desktop'" (click)="deviceSelect.emit('desktop')">Desktop 4K</button>
+  <button [class.active]="device() === 'iphone'" (click)="deviceSelect.emit('iphone')">iPhone</button>
+</div>
+
+<button class="btn-primary" (click)="generate.emit()">Generate new</button>
+<button class="btn-secondary" (click)="download.emit()">Download</button>
