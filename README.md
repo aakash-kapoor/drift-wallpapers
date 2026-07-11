@@ -13,6 +13,8 @@ DRIFT is a premium, web-based minimal procedural wallpaper generator built with 
   - **Desert** (Intertwined Bezier dune lines)
 - **Fluid Customization**: Instantly switch palettes, toggle wallpaper dark modes, or randomize seeds to generate infinite variations.
 - **Tailored Outputs**: Download wallpapers optimized for **Desktop 4K** (3840×2160) or **iPhone** (1290×2796) aspect ratios.
+- **Real-Time URL Sync & Sharing**: Instantly serializes all active configuration settings (pattern, seed, palette, dark mode, device configuration) into query parameters in real time. Sharing the URL recreates the exact wallpaper state.
+- **Progressive Web App (PWA)**: Built with Angular Service Worker caching (`ngsw-config.json`) and a web app manifest for complete offline compatibility, fast startup, and native installation support.
 - **Firebase Saved Library**:
   - **Anonymous Sign-In**: Silently registers users on startup, keeping their library sandboxed and synchronized.
   - **Firestore Integration**: Persists lightweight wallpaper configurations without high storage overhead.
@@ -80,4 +82,51 @@ Run unit tests via Vitest:
 
 ```bash
 npm run test
+```
+
+### Firebase Setup & Configuration
+
+This project relies on Firebase for anonymous authentication and Firestore storage. To set it up for development:
+
+1. **Create a Firebase Project**: Create a new project in the [Firebase Console](https://console.firebase.google.com).
+2. **Add a Web App**: Register a new web app in your Firebase project.
+3. **Configure Environment Files**:
+   Copy the template environment file to create the local configuration files:
+   ```bash
+   cp src/environments/environment.template.ts src/environments/environment.ts
+   cp src/environments/environment.template.ts src/environments/environment.prod.ts
+   ```
+   Fill in your Firebase project credentials (`apiKey`, `authDomain`, `projectId`, etc.) in both `environment.ts` and `environment.prod.ts`.
+4. **Enable Anonymous Authentication**:
+   In the Firebase Console, go to **Authentication** > **Sign-in method**, and enable the **Anonymous** provider.
+5. **Set Up Firestore**:
+   Create a Firestore database.
+6. **Configure Firestore Security Rules**:
+   Deploy the following security rules to ensure users can only access their own saved configurations:
+   ```javascript
+   rules_version = '2';
+   service cloud.firestore {
+     match /databases/{database}/documents {
+       match /users/{userId}/wallpapers/{wallpaperId} {
+         allow read, write, delete: if request.auth != null && request.auth.uid == userId;
+       }
+     }
+   }
+   ```
+
+### Deployment
+
+Deploy the application to Firebase Hosting:
+
+```bash
+# Install Firebase CLI globally if you haven't already
+npm install -g firebase-tools
+
+# Login and select your project
+firebase login
+firebase use --add
+
+# Build and deploy the project
+npm run build
+firebase deploy
 ```
